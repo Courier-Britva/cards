@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Papa from 'papaparse'; // Use papaparse to parse the CSV
+import Papa from 'papaparse';
 import './japbody.css';
-import csvData from './symbols.scv';
+import csvData from './symbols.csv';
 
 function JapBody() {
     const [data, setData] = useState([]);
@@ -41,7 +41,13 @@ function JapBody() {
         } else {
             setFeedbackClass('wrong');
         }
-        setTimeout(generateNewSymbol, 800);
+        setTimeout(generateNewSymbol, 3200);
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            checkAnswer();
+        }
     };
 
     return (
@@ -67,10 +73,18 @@ function JapBody() {
                 type="text"
                 value={inputValue}
                 onChange={handleInputChange}
+                onKeyDown={handleKeyDown} 
             />
-            <button className="check_button" onClick={checkAnswer}>
-                Check Answer
-            </button>
+            {feedbackClass === 'wrong' && (
+                <div className='popup popup_wrong'>
+                    Nooo <br/>it was: <b>{currentSymbol.pronunciation}</b>
+                </div>
+            )}
+            {feedbackClass === 'correct' && (
+                <div className='popup popup_correct'>
+                    Yes! <br/>it is <b>{currentSymbol.pronunciation}</b>
+                </div>
+            )}
         </div>
     );
 }

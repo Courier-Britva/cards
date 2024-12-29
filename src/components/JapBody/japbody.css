@@ -9,6 +9,7 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .symbol{
@@ -32,6 +33,37 @@
 }
 
 .input{
-    margin-top: 20px;
-    padding: 4px;
+    padding: 6px;
+    min-width: 320px;
+    margin-top: 50vh;
+}
+
+.feedback_text {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+.correct .feedback_text {
+    color: green;
+}
+.wrong .feedback_text {
+    color: red;
+}
+
+.popup{
+    position: absolute;
+    top: 30vh;
+    left: calc(50% - 175px);
+    width: 100vw;
+    max-width: 350px;
+}
+
+.popup_wrong{
+    background-color: #b84650;
+}
+
+.popup_correct{
+    background-color: #6fcc58;
 }
